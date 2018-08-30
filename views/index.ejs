@@ -3,20 +3,32 @@
   <% if(errors) { %>
     <ul>
       <% errors.forEach((error) => { %>
-        <li>
+        <li style="color:red;">
           <%= error.msg %>
         </li>
       <% }) %>
     </ul>
   <% } %>
   <form method="POST" action='/users/add'>
-    <label>First Name</label><br>
+    <% if(errors.find(err => err.param === 'first_name')) { %>
+      <label style="color:red;">First Name</label><br>
+    <% } else { %>
+      <label>First Name</label><br>
+    <% } %>
     <input type="text" name="first_name">
     <br>
-    <label>Last Name</label><br>
+    <% if(errors.find(err => err.param === 'last_name')) { %>
+      <label style="color:red;">Last Name</label><br>
+    <% } else { %>
+      <label>Last Name</label><br>
+    <% } %>
     <input type="text" name="last_name">
     <br>
-    <label>Email</label><br>
+    <% if(errors.find(err => err.param === 'email')) { %>
+      <label style="color:red;">Email</label><br>
+    <% } else { %>
+      <label>Email</label><br>
+    <% } %>
     <input type="text" name="email">
     <br>
     <input type="submit" value="Submit">
